@@ -1,12 +1,13 @@
 import React, { useRef, useState } from 'react';
 import { post } from '../plugins/http';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const password2Ref = useRef();
-
   const [error, setError] = useState('');
+  const nav = useNavigate();
 
   async function submit() {
     const registerData = {
@@ -14,9 +15,10 @@ const RegisterPage = () => {
       password: passwordRef.current.value,
       password2: password2Ref.current.value,
     };
-    setError('');
+
     const data = await post('validateRegister', registerData);
     setError(data.message);
+    if (error) nav("/login");
     console.log('registerData res', data);
   }
 

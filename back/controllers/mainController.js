@@ -45,12 +45,22 @@ module.exports = {
     console.log('req.body', req.body);
     const newUser = new userSchema(req.body);
     await newUser.save();
-    res.send({ error: false, message: 'all good', user: newUser })
+    res.send({ error: false, message: '', user: newUser })
   },
+  validateLogin: async (req, res) => {
+    console.log('req login', req.body);
+    const { email, password } = req.body;
+    const user = await userSchema.find({ email, password });
+    console.log('user', user);
+    if (user.length) res.send({ ok: 'ok', error: false, user });
+    else res.send({ ok: 'ok', error: true });
+  },
+
+
   validatePost: async (req, res) => {
     const newPost = new detailedPostSchema(req.body);
     await newPost.save();
-    res.send({ error: false, message: 'all good', post: newPost });
+    res.send({ error: false, message: '', post: newPost });
   },
   detailedPosts: async (req, res) => {
     const posts = await detailedPostSchema.find();

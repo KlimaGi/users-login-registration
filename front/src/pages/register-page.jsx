@@ -9,16 +9,16 @@ const RegisterPage = () => {
   const [error, setError] = useState('');
   const nav = useNavigate();
 
-  async function submit() {
+  async function register() {
     const registerData = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
       password2: password2Ref.current.value,
     };
 
-    const data = await post('validateRegister', registerData);
+    const data = await post('register', registerData);
     setError(data.message);
-    if (error) nav("/login");
+    if (!data.error) nav("/login");
     console.log('registerData res', data);
   }
 
@@ -28,7 +28,7 @@ const RegisterPage = () => {
       <input ref={passwordRef} type='text' placeholder='password' />
       <input ref={password2Ref} type='text' placeholder='repeat password' />
 
-      <button onClick={submit}>register</button>
+      <button onClick={register}>register</button>
       <span className='error-msg'>{error}</span>
     </div>
   )

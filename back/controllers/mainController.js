@@ -1,20 +1,20 @@
 const userSchema = require('../schemas/userSchema');
+const resSend = require('../modules/universalRes');
 
 module.exports = {
 
-  validateRegister: async (req, res) => {
-    console.log('req.body', req.body);
+  register: async (req, res) => {
     const newUser = new userSchema(req.body);
     await newUser.save();
-    res.send({ error: false, message: '', user: newUser })
+    resSend(res, false, 'all good', null);
   },
-  validateLogin: async (req, res) => {
-    console.log('req login', req.body);
+  login: async (req, res) => {
     const { email, password } = req.body;
-    const user = await userSchema.find({ email, password });
-    console.log('user', user);
-    if (user.length) res.send({ ok: 'ok', error: false, user });
-    else res.send({ ok: 'ok', error: true });
+
+    const userExists = await userSchema.findOne({ email, password });
+    if (userExists) return resSend(res, false, 'all good', userExists);
+
+    resSend(res, true, "bad credentials", null);
   },
 
 }

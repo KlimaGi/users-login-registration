@@ -1,16 +1,38 @@
 const isEmail = require('sane-email-validation');
+const userSchema = require('../schemas/userSchema');
+const sendRes = require('../modules/universalRes');
 
-module.exports = (req, res, next) => {
-  const { email, password, password2 } = req.body;
+module.exports = {
+  emailValid: (req, res, next) => {
+    const { email } = req.body;
 
-  console.log(email, password, password2);
-  let message = '';
+    if (!isEmail(email)) return sendRes(res, true, "wrong email", null);
+    next();
+  },
 
-  if (!isEmail(email)) message = "wrong email";
-  if (password !== password2) message = "both passwords should match";
-  if (password.length < 5) message = "password should have at least 5 symbols";
-  if (password.length > 20) message = "password should have less than 20 symbols";
+  passwordValid: (req, res, next) => {
+    const { password, password2 } = req.body;
+    if (password !== password2) return sendRes(res, true, "both passwords should match", null);
 
-  if (message !== '') return res.send({ error: true, message });
-  else next();
+    if (password.length < 5) return sendRes(res, true, "password should have at least 5 symbols", null);
+
+    if (password.length > 20) return sendRes(res, true, "password should have less than 20 symbols", null);
+
+    next();
+  },
+
+  userValid: async (req, res, next) => {
+    const { email } = req.body;
+    const userExists = await userSchema.findOne({ email });
+    if (userExists) return sendRes(res, true, "user already exists", null);
+
+    next();
+  }
+
+
+
+
+
+
+
 }

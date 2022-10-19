@@ -19,5 +19,13 @@ module.exports = {
 
     resSend(res, true, "bad credentials", null);
   },
+  getPhoto: async (req, res) => {
+    const { secret } = req.params;
+    console.log('secret', secret);
+    const userExists = await userSchema.findOne({ secret });
+
+    console.log('userExists', userExists.photo);
+    resSend(res, false, 'all good', userExists.photo);
+  }
 
 }

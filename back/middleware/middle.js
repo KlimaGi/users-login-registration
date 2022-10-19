@@ -34,10 +34,12 @@ module.exports = {
     if (!photo.includes('http')) return sendRes(res, true, "bad photo url", null);
 
     next();
+  },
+  secretValid: async (req, res, next) => {
+    const { secret } = req.params;
+    const userExists = await userSchema.findOne({ secret });
+    if (!userExists) return sendRes(res, true, "there is not such user", null);
+
+    next();
   }
-
-
-
-
-
 }

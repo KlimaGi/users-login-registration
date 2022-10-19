@@ -6,13 +6,13 @@
 *// in front end we save "secret" to local storage
 // secret needed for later requests validation (requests where user should be logged in to make them)
 //2
-// create route and controller where user can get his photo
-// this photo can be retrieved only if user provides his "secret"
-// user sends his secret to this route, you check if user exists by this secret
-// find user by secret and return only his photo to front-end
+*// create route and controller where user can get his photo
+*// this photo can be retrieved only if user provides his "secret"
+*// user sends his secret to this route, you check if user exists by this secret
+*// find user by secret and return only his photo to front-end
 //3
-// using "secret" from localstorage, make login in front end,
-// so user could retrieve his photo 
+*// using "secret" from localstorage, make login in front end,
+*// so user could retrieve his photo 
 
 
 // if you are done with photo route, create logic, so user could update his email, and update his photo (before updating email, check if new email nos not exist on database)

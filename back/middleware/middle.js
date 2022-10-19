@@ -11,6 +11,6 @@ module.exports = (req, res, next) => {
   if (password.length < 5) message = "password should have at least 5 symbols";
   if (password.length > 20) message = "password should have less than 20 symbols";
 
-  if (message !== '') return res.send({ error: true, message: message });
+  if (message !== '') return res.send({ error: true, message });
   else next();
 }

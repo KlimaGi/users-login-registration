@@ -13,9 +13,10 @@ const LoginPage = () => {
       email: emailRef.current.value,
       password: passwordRef.current.value,
     };
-    const data = await post('login', loginData);
-    console.log('loginData res', data);
-    if (data.error) return setError(data.message);
+    const res = await post('login', loginData);
+    console.log('loginData res', res);
+    sessionStorage.setItem('secret', res.data);
+    if (res.error) return setError(res.message);
     nav("/");
   }
 

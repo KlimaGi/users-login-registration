@@ -2,8 +2,8 @@
 *// in user database schema add new key "photo" and "secret"
 *// on user registration, let user to add his photo url
 *// when user registers, you generate random string value and save it to "secret" key
-// when user will login, we send "secret" to front end
-// in front end we save "secret" to local storage
+*// when user will login, we send "secret" to front end
+*// in front end we save "secret" to local storage
 // secret needed for later requests validation (requests where user should be logged in to make them)
 //2
 // create route and controller where user can get his photo

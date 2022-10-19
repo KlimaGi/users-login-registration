@@ -27,9 +27,14 @@ module.exports = {
     if (userExists) return sendRes(res, true, "user already exists", null);
 
     next();
+  },
+
+  photoValid: (req, res, next) => {
+    const { photo } = req.body;
+    if (!photo.includes('http')) return sendRes(res, true, "bad photo url", null);
+
+    next();
   }
-
-
 
 
 

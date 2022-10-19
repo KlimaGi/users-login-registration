@@ -10,6 +10,14 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  photo: {
+    type: String,
+    required: true
+  },
+  secret: {
+    type: String,
+    required: true
+  },
 })
 
 const exportUser = mongoose.model("registerUsers", userSchema);

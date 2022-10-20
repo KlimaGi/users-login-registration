@@ -19,3 +19,20 @@ app.use(express.json());
 app.listen(4000);
 
 app.use('/', mainRouter);
+
+const bcrypt = require('bcrypt');
+
+async function createHash() {
+  let myPswd = 'slaptas123';
+  const hash = await bcrypt.hash(myPswd, 15);
+  console.log('hash', hash);
+};
+//createHash();
+
+async function comparePass() {
+  const myPswd = 'slaptas123';
+  const hash = "$2b$15$NJ4KYzeqOnqCaSv9ngM/MelfXob5MLJowe6SuK3bYgLHgAYzxlCNq";
+  const compare = await bcrypt.compare(myPswd, hash);
+  console.log('compare', compare);
+};
+// comparePass(); // true

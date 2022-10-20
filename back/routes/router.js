@@ -8,7 +8,7 @@ const { register, login, getPhoto } = require('../controllers/mainController');
 router.post('/register', emailValid, passwordValid, userValid, photoValid, register);
 
 router.post('/login', login);
-router.get('/getPhoto/:secret', secretValid, getPhoto)
+router.get('/getPhoto/:secret', secretValid, getPhoto);
 
 
 module.exports = router; 

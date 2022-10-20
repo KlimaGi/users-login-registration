@@ -5,15 +5,10 @@ import { get } from '../plugins/http';
 const IndexPage = () => {
   const [photo, setPhoto] = useState('');
 
-  useEffect(() => {
-    console.log('reload-useEffect');
-  }, [photo])
-
   const getPhoto = async () => {
     let secretI = sessionStorage.getItem('secret');
-    console.log('secretI', secretI);
     const res = await get(`getPhoto/${secretI}`);
-    if (!res.error) setPhoto(res.data);
+    if (!res.error) setPhoto(res.data.photo);
     console.log('res-getPhoto', res);
   }
 

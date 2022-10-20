@@ -17,3 +17,7 @@
 
 // if you are done with photo route, create logic, so user could update his email, and update his photo (before updating email, check if new email nos not exist on database)
 
+
+// on user registration encrypt his password and save hash to "password"
+// on user login find user by email, take user plane password and compare with hash from db
+// if compared successfully, you good to go

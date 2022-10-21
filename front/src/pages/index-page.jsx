@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../components/button';
 import { get } from '../plugins/http';
 
 const IndexPage = () => {
   const [photo, setPhoto] = useState('');
+  const nav = useNavigate();
+
+  const logout = () => {
+    sessionStorage.removeItem("secret");
+    nav('/login');
+  }
 
   const getPhoto = async () => {
     let secretI = sessionStorage.getItem('secret');
@@ -13,11 +20,14 @@ const IndexPage = () => {
   }
 
   return (
-    <div className='d-flex fd-column'>
-      <h5>Middles</h5>
-      <p>hi, user</p>
+    <div className=''>
 
-      <button onClick={getPhoto} className='button'>get photo</button>
+      <div className='line'>
+        <div>Posts</div>
+        <Button func={logout} text='logout' />
+      </div>
+
+      <Button func={getPhoto} text='get photo' />
       <div className='post'>
         <img src={photo} alt="" />
       </div>

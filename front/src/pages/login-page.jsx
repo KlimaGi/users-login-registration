@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { post } from '../plugins/http';
 import { useNavigate } from 'react-router-dom';
+import { post } from '../plugins/http';
+import Button from '../components/button';
 
 const LoginPage = () => {
   const emailRef = useRef();
@@ -21,12 +22,15 @@ const LoginPage = () => {
   }
 
   return (
-    <div>
-      <input ref={emailRef} type='text' placeholder='email' />
-      <input ref={passwordRef} type='text' placeholder='password' />
+    <div className='main'>
 
-      <button onClick={login}>login</button>
-      <span className='error-msg'>{error}</span>
+      <div className='container'>
+        <input ref={emailRef} type='text' placeholder='email' className='input' />
+        <input ref={passwordRef} type='text' placeholder='password' className='input' />
+
+        <Button func={login} text="login" />
+        <span className='error-msg'>{error}</span>
+      </div>
     </div>
   )
 }

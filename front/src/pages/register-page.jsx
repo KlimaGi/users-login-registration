@@ -29,14 +29,16 @@ const RegisterPage = () => {
   }
 
   return (
-    <div>
-      <input ref={emailRef} type='text' placeholder='email' />
-      <input ref={passwordRef} type='text' placeholder='password' />
-      <input ref={password2Ref} type='text' placeholder='repeat password' />
-      <input ref={photoRef} type='text' placeholder='photo url' />
+    <div className='main'>
+      <div className='container'>
+        <input ref={emailRef} type='text' placeholder='email' className='input' />
+        <input ref={passwordRef} type='text' placeholder='password' className='input' />
+        <input ref={password2Ref} type='text' placeholder='repeat password' className='input' />
+        <input ref={photoRef} type='text' placeholder='photo url' className='input' />
 
-      <button onClick={register}>register</button>
-      <span className='error-msg'>{error}</span>
+        <button className='button' onClick={register}>register</button>
+        <span className='error-msg'>{error}</span>
+      </div>
     </div>
   )
 }

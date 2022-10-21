@@ -17,20 +17,27 @@
 .fd-column{
   flex-direction: column;
 }
+.line{
+  margin: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .container {
   width: 50rem;
+  padding: 1rem;
   background-color: #e2e2f0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
   align-items: center;
 }
 
 .button{
   padding: 1rem;
-  margin: 0.5rem;
   box-sizing: border-box;
   border-style: none;
+  width: 31%;
 }
 
 .input {

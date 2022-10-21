@@ -34,6 +34,19 @@ module.exports = {
     const userExists = await userSchema.findOne({ secret });
 
     resSend(res, false, 'all good', { photo: userExists.photo });
+  },
+  setPhoto: async (req, res) => {
+    console.log('req.body-setPhoto', req.body);
+    const { secret, photo } = req.params;
+    const userExists = await userSchema.findOne({ secret });
+    console.log('userExists', userExists);
+    const userData = await userSchema.findOneAndUpdate(
+      { secret: secret },
+      { $set: { photo: photo } },
+      { new: true }
+    );
+    console.log('userData', userData);
+    res.send({ ok: 'ok-photo', userData: userData });
   }
 
 }

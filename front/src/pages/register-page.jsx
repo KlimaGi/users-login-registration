@@ -6,7 +6,7 @@ const RegisterPage = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const password2Ref = useRef();
-  const photoRef = useRef();
+
   const [error, setError] = useState('');
   const nav = useNavigate();
 
@@ -15,7 +15,6 @@ const RegisterPage = () => {
       email: emailRef.current.value,
       password: passwordRef.current.value,
       password2: password2Ref.current.value,
-      photo: photoRef.current.value,
     };
 
     const res = await post('register', registerData);
@@ -30,11 +29,10 @@ const RegisterPage = () => {
 
   return (
     <div className='main'>
-      <div className='container'>
-        <input ref={emailRef} type='text' placeholder='email' className='input' />
-        <input ref={passwordRef} type='text' placeholder='password' className='input' />
-        <input ref={password2Ref} type='text' placeholder='repeat password' className='input' />
-        <input ref={photoRef} type='text' placeholder='photo url' className='input' />
+      <div className='container form' >
+        <input ref={emailRef} type='text' placeholder='email' />
+        <input ref={passwordRef} type='text' placeholder='password' />
+        <input ref={password2Ref} type='text' placeholder='repeat password' />
 
         <button className='button' onClick={register}>register</button>
         <span className='error-msg'>{error}</span>

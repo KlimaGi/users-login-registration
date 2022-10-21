@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/button';
+import Profile from '../components/profile';
 import { get } from '../plugins/http';
 
 const IndexPage = () => {
@@ -26,6 +27,8 @@ const IndexPage = () => {
         <div>Posts</div>
         <Button func={logout} text='logout' />
       </div>
+
+      <Profile />
 
       <Button func={getPhoto} text='get photo' />
       <div className='post'>

@@ -18,7 +18,7 @@ const LoginPage = () => {
     console.log('loginData res', res);
     sessionStorage.setItem('secret', res.data);
     if (res.error) return setError(res.message);
-    nav("/");
+    nav("/profile");
   }
 
   return (

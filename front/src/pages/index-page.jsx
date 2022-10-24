@@ -1,23 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/button';
 import Profile from '../components/profile';
-import { get } from '../plugins/http';
 
 const IndexPage = () => {
-  const [photo, setPhoto] = useState('');
   const nav = useNavigate();
 
   const logout = () => {
     sessionStorage.removeItem("secret");
-    nav('/login');
-  }
-
-  const getPhoto = async () => {
-    let secretI = sessionStorage.getItem('secret');
-    const res = await get(`getPhoto/${secretI}`);
-    if (!res.error) setPhoto(res.data.photo);
-    console.log('res-getPhoto', res);
+    nav('/');
   }
 
   return (
@@ -29,11 +20,6 @@ const IndexPage = () => {
       </div>
 
       <Profile />
-
-      <Button func={getPhoto} text='get photo' />
-      <div className='post'>
-        <img src={photo} alt="" />
-      </div>
 
     </div>
   )

@@ -15,14 +15,13 @@ const Profile = () => {
   }, [])
 
   const changePhoto = async () => {
-    let secretI = sessionStorage.getItem('secret');
-    const setPhotoData = {
-      secret: secretI,
+    const photoData = {
+      secret: sessionStorage.getItem('secret'),
       photo: photoRef.current.value
     };
-    console.log('setPhotoData', setPhotoData);
+    console.log('setPhotoData', photoData);
 
-    const res = await post('setPhoto', setPhotoData);
+    const res = await post('setPhoto', photoData);
     console.log('res-front', res);
     setPhoto(photoRef.current.value);
   }

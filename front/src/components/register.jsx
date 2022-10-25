@@ -23,7 +23,7 @@ const Register = () => {
     if (!res.error) {
       console.log('res.data', res.data);
       sessionStorage.setItem('secret', res.data);
-      nav("/login");
+      nav("/");
     };
     console.log('registerData res', res);
   }

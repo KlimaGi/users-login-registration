@@ -16,8 +16,10 @@ const Login = () => {
     };
     const res = await post('login', loginData);
     console.log('loginData res', res);
-    sessionStorage.setItem('secret', res.data);
+
+    localStorage.setItem('secret', res.data.secret);
     if (res.error) return setError(res.message);
+    // return kodel naudojamas, jei veikia ir be jo?
     nav("/profile");
   }
 

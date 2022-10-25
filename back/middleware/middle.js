@@ -36,9 +36,11 @@ module.exports = {
   },
   secretValid: async (req, res, next) => {
     const { secret } = req.params;
-    const userExists = await userSchema.findOne({ secret });
-    if (!userExists) return sendRes(res, true, "there is not such user", null);
+    // su email ir photo nurodau kokius laukus man grazinti is backo
+    const user = await userSchema.findOne({ secret }, { email: 1, photo: 1 });
+    if (!user) return sendRes(res, true, "there is not such user", null);
 
+    req.body.user = user;
     next();
   }
 }

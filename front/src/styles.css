@@ -54,7 +54,6 @@
 
 .button{
   padding: 1rem;
-  margin: 0.3rem;
   box-sizing: border-box;
   border-style: none;
   width: 31%;
@@ -94,9 +93,12 @@
 }
 
 .toolbar {
-  padding: 1rem;
   background-color: var(--light);
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 .toolbar a {
   margin: 1rem;
+  padding: 1rem;
 }

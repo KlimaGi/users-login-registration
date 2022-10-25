@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../components/button';
 import Profile from '../components/profile';
 
-const IndexPage = () => {
+const ProfilePage = () => {
   const nav = useNavigate();
 
   const logout = () => {
@@ -25,4 +25,4 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage;
+export default ProfilePage;

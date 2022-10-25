@@ -9,6 +9,7 @@
   box-sizing: border-box;
   color: var(--dark);
   font-size: 1.1rem;
+  margin: 0;
 }
 
 .main {
@@ -90,4 +91,12 @@
   object-fit: cover;
   overflow: hidden;
   border-radius: 50%;
+}
+
+.toolbar {
+  padding: 1rem;
+  background-color: var(--light);
+}
+.toolbar a {
+  margin: 1rem;
 }

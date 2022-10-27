@@ -1,12 +1,9 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useContext } from 'react';
 import { get, post } from '../plugins/http';
 import MainContext from '../context/main-context';
-import { useContext } from 'react';
 
 const Profile = () => {
-  const { setUser } = useContext(MainContext);
-
-  const [photo, setPhoto] = useState('');
+  const { user, setUser } = useContext(MainContext);
   const photoRef = useRef();
 
   useEffect(() => {
@@ -21,26 +18,32 @@ const Profile = () => {
 
   const changePhoto = async () => {
     const photoData = {
-      secret: sessionStorage.getItem('secret'),
+      secret: localStorage.getItem('secret'),
       photo: photoRef.current.value
     };
-    console.log('setPhotoData', photoData);
 
     const res = await post('setPhoto', photoData);
+    if (!res.error) {
+      const userCopy = { ...user };
+      userCopy.photo = res.data.photo;
+      setUser(userCopy);
+    }
     console.log('res-front', res);
-    setPhoto(photoRef.current.value);
-  }
 
+  }
 
   return (
     <div>
-      <div className=''>
-
-        <img src={photo} alt="" className='profile-img' />
-      </div>
       profile
-      <button onClick={changePhoto}>change photo</button>
-      <input ref={photoRef} type='text' placeholder='photo url' />
+      {
+        user &&
+        <div className='d-flex fd-column side'>
+          <img src={user.photo} alt="" className='profile-img' />
+          <button onClick={changePhoto}>change photo</button>
+          <input ref={photoRef} type='text' placeholder='photo url' />
+        </div>
+
+      }
     </div>
   )
 }

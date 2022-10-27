@@ -2,7 +2,7 @@ const keygen = require("keygenerator");
 const bcrypt = require('bcrypt');
 const userSchema = require('../schemas/userSchema');
 const postSchema = require('../schemas/postSchema');
-const resSend = require('../modules/universalRes');
+const sendRes = require('../modules/universalRes');
 
 module.exports = {
 
@@ -17,7 +17,7 @@ module.exports = {
 
     await newUser.save();
 
-    return resSend(res, false, 'all good', null);
+    return sendRes(res, false, 'all good', null);
   },
   login: async (req, res) => {
     const { email, password } = req.body;
@@ -27,10 +27,10 @@ module.exports = {
     if (userExists) {
       const compare = await bcrypt.compare(password, userExists.password);
 
-      if (compare) return resSend(res, false, 'all good', { secret: userExists.secret });
+      if (compare) return sendRes(res, false, 'all good', { secret: userExists.secret });
     }
 
-    return resSend(res, true, "bad credentials", null);
+    return sendRes(res, true, "bad credentials", null);
   },
   userData: async (req, res) => {
     const { user } = req.body;
@@ -38,19 +38,18 @@ module.exports = {
 
     // const userExists = await userSchema.findOne({ secret });
 
-    return resSend(res, false, 'all good', user);
+    return sendRes(res, false, 'all good', user);
   },
   setPhoto: async (req, res) => {
-    console.log('req.body-setPhoto', req.body);
-    const { secret, photo } = req.params;
+    const { secret, photo } = req.body;
 
     const userData = await userSchema.findOneAndUpdate(
       { secret: secret },
       { $set: { photo: photo } },
       { new: true }
     );
-    console.log('userData', userData);
-    res.send({ ok: 'ok-photo', userData: userData });
+
+    return sendRes(res, false, 'ok-photo', { photo: userData.photo });
   }
 
 }

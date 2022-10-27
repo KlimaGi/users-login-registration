@@ -50,6 +50,27 @@ module.exports = {
     );
 
     return sendRes(res, false, 'ok-photo', { photo: userData.photo });
+  },
+  postData: async (req, res) => {
+    console.log('req.body-postData', req.body);
+    const { text, photo, user } = req.body;
+
+    const newPost = new postSchema({
+      text,
+      photo,
+      email: user.email
+    });
+
+    await newPost.save();
+
+    return sendRes(res, false, "ok-post", req.body);
+  },
+  allPosts: async (req, res) => {
+    const { secret } = req.params;
+
+
+
+    return sendRes(res, false, "ok-all-post", req.body);
   }
 
 }

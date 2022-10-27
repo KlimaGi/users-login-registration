@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useContext } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import { get, post } from '../plugins/http';
 import MainContext from '../context/main-context';
 
@@ -10,10 +10,9 @@ const Profile = () => {
     const userData = async () => {
       let secretI = localStorage.getItem('secret');
       const res = await get(`userProfile/${secretI}`);
-      console.log('res-profile', res);
       if (!res.error) setUser(res.data);
-    }
-    userData()
+    };
+    userData();
   }, [])
 
   const changePhoto = async () => {

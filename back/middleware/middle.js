@@ -43,6 +43,7 @@ module.exports = {
     const user = await userSchema.findOne({ secret }, { email: 1, photo: 1 });
     if (!user) return sendRes(res, true, "there is not such user", null);
 
+    // useris visad body'je, patogu pasiekti data
     req.body.user = user;
     next();
   }

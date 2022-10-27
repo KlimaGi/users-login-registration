@@ -1,3 +1,4 @@
+const dotenv = require("dotenv");
 const express = require('express');
 
 // express serveris
@@ -6,10 +7,12 @@ const cors = require('cors');
 const mongoose = require("mongoose")
 const mainRouter = require("./routes/router");
 
-mongoose.connect("mongodb+srv://admin:admin@cluster0.ygdrbad.mongodb.net/?retryWrites=true&w=majority")
+dotenv.config();
+const uri = process.env.ATLAS_URI;
+mongoose.connect(uri)
   .then(() => { console.log('connected ok') })
-  .catch(e => {
-    console.log('connection error')
+  .catch(error => {
+    console.log('connection error', error)
   })
 
 app.use(cors());

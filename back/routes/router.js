@@ -13,7 +13,9 @@ const {
   register,
   login,
   userData,
-  setPhoto
+  setPhoto,
+  postData,
+  allPosts
 } = require('../controllers/mainController');
 
 router.post('/register', emailValid, passwordValid, userValid, register);
@@ -21,7 +23,8 @@ router.post('/login', login);
 router.get('/userProfile/:secret', secretValid, userData);
 router.post('/setPhoto', secretValid, setPhoto);
 
-router.get('/profile/:secret', secretValid,)
+router.post('/postData', secretValid, postData);
+router.get('/allPosts/:secret', secretValid, allPosts);
 
 
 module.exports = router; 

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
-  title: {
+  text: {
     type: String,
     required: true
   },
@@ -10,7 +10,7 @@ const postSchema = new Schema({
     type: String,
     required: true
   },
-  image: {
+  photo: {
     type: String,
     required: true,
   },

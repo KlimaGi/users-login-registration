@@ -34,7 +34,7 @@ function App() {
             <Route path='/profile' element={<ProfilePage />} />
             <Route path='/create' element={<CreatePostPage />} />
             <Route path='/allPosts' element={<AllPostsPage />} />
-            <Route path='/singlePost' element={<SinglePostPage />} />
+            <Route path='/singlePost/:id' element={<SinglePostPage />} />
 
           </Routes>
         </BrowserRouter>

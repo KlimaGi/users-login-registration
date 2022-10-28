@@ -15,7 +15,8 @@ const {
   userData,
   setPhoto,
   postData,
-  allPosts
+  allPosts,
+  singlePost
 } = require('../controllers/mainController');
 
 router.post('/register', emailValid, passwordValid, userValid, register);
@@ -25,6 +26,8 @@ router.post('/setPhoto', secretValid, setPhoto);
 
 router.post('/postData', secretValid, postData);
 router.get('/allPosts/:secret', secretValid, allPosts);
+router.get('/singlePost/:id/:secret', secretValid, singlePost);
+
 
 
 module.exports = router; 

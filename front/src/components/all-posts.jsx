@@ -12,7 +12,6 @@ const AllPosts = () => {
 
       const secret = localStorage.getItem('secret');
       const res = await get(`allPosts/${secret}`);
-      console.log('all-posts-res', res);
       setPosts(res.data);
     };
     allPosts();

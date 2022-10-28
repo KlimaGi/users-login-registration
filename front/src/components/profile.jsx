@@ -27,19 +27,16 @@ const Profile = () => {
       userCopy.photo = res.data.photo;
       setUser(userCopy);
     }
-    console.log('res-front', res);
-
   }
 
   return (
-    <div>
-      profile
+    <div >
       {
         user &&
-        <div className='d-flex fd-column side'>
+        <div className='container'>
           <img src={user.photo} alt="" className='profile-img' />
-          <button onClick={changePhoto}>change photo</button>
-          <input ref={photoRef} type='text' placeholder='photo url' />
+          <button onClick={changePhoto} className="button">change photo</button>
+          <input ref={photoRef} type='text' placeholder='photo url' className='input' />
         </div>
 
       }

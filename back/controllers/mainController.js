@@ -69,6 +69,14 @@ module.exports = {
 
     const posts = await postSchema.find();
     return sendRes(res, false, "ok-all-post", posts);
+  },
+  singlePost: async (req, res) => {
+    const { id } = req.params;
+
+    const post = await postSchema.findOne({ _id: id });
+    console.log('post-single', post);
+
+    return sendRes(res, false, "ok-single-post", post);
   }
 
 }

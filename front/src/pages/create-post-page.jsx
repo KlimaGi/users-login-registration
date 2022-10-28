@@ -7,7 +7,6 @@ const CreatePostPage = () => {
   const photoRef = useRef();
   const nav = useNavigate();
 
-
   const createPost = async () => {
     const postData = {
       text: textRef.current.value,
@@ -20,10 +19,12 @@ const CreatePostPage = () => {
   }
 
   return (
-    <div>
-      <input ref={photoRef} type='text' placeholder='photo' />
-      <input ref={textRef} type='text' placeholder='text' />
-      <button onClick={createPost}>Create</button>
+    <div className='main'>
+      <div className='container'>
+        <input ref={photoRef} type='text' placeholder='photo' className='input' />
+        <input ref={textRef} type='text' placeholder='text' className='input' />
+        <button onClick={createPost} className='button'>Create</button>
+      </div>
     </div>
   )
 }

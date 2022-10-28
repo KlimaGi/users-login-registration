@@ -23,7 +23,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div >
       <MainContext.Provider value={states}>
 
         <BrowserRouter>

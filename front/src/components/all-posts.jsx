@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import MainContext from '../context/main-context';
 import { get } from '../plugins/http';
+import SinglePost from './single-post';
 
 const AllPosts = () => {
+
+  const { posts, setPosts } = useContext(MainContext);
 
   useEffect(() => {
     const allPosts = async () => {
@@ -9,14 +13,15 @@ const AllPosts = () => {
       const secret = localStorage.getItem('secret');
       const res = await get(`allPosts/${secret}`);
       console.log('all-posts-res', res);
+      setPosts(res.data);
     };
     allPosts();
 
   }, [])
 
   return (
-    <div>
-
+    <div className='post-container'>
+      {posts.map((post) => <SinglePost key={post._id} post={post} />)}
     </div>
   )
 }

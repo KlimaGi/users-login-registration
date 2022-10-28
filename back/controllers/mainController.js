@@ -52,7 +52,6 @@ module.exports = {
     return sendRes(res, false, 'ok-photo', { photo: userData.photo });
   },
   postData: async (req, res) => {
-    console.log('req.body-postData', req.body);
     const { text, photo, user } = req.body;
 
     const newPost = new postSchema({
@@ -62,15 +61,14 @@ module.exports = {
     });
 
     await newPost.save();
-
     return sendRes(res, false, "ok-post", req.body);
   },
   allPosts: async (req, res) => {
-    const { secret } = req.params;
+    // individualaus userio postai surandami pagal email
+    // const { user } = req.body;
 
-
-
-    return sendRes(res, false, "ok-all-post", req.body);
+    const posts = await postSchema.find();
+    return sendRes(res, false, "ok-all-post", posts);
   }
 
 }

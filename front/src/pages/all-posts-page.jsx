@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import AllPosts from '../components/all-posts';
 
 const AllPostsPage = () => {
   return (
     <div>
-      All Posts Page
+      <AllPosts />
     </div>
   )
 }
